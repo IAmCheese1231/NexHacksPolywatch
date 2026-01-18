@@ -1,54 +1,59 @@
 # /srv/app/scripts/build_graph_once.py
 import asyncio
-
 from app.db import SessionLocal
-from app.pipelines.ingest_markets import ingest_markets
+from app.pipelines.ingest_markets import ingest_active_markets
 from app.pipelines.embeddings import build_embeddings
 from app.pipelines.entities import extract_entities
 from app.graph.build import (
     build_semantic_edges,
     build_entity_edges,
-    build_stat_edges,
+    build_tag_edges,
+    build_keyword_edges,
     build_final_edges,
+    build_stat_edges,
 )
 from app.settings import settings
-
+from app.graph.build import build_keyword_edges
 
 async def main():
     db = SessionLocal()
     try:
-        print("[1/6] ingest markets (FULL)", flush=True)
-        n = await ingest_markets(db, max_pages=settings.ingest_max_pages)
-        print(f"[1/6] markets_ingested={n}", flush=True)
+        print("[1/6] ingest ACTIVE markets (events->markets)", flush=True)
+        n = await ingest_active_markets(db, max_pages=settings.ingest_max_pages, page_limit=100)
+        print(f"[1/6] markets_upserted~={n}", flush=True)
 
-        # Prices ingest is currently broken due to CLOB prices-history needing `market` (asset id).
-        print("[2/6] ingest prices (SKIPPED)", flush=True)
+        print("[2/6] prices ingest (still skip until you fix CLOB history)", flush=True)
 
-        print("[3/6] embeddings (FULL)", flush=True)
-        # No limit -> build for all markets missing embeddings
-        build_embeddings(db)
+        print("[3/6] embeddings (active-first, robust text)", flush=True)
+        build_embeddings(db)  # will do missing-only
 
-        print("[4/6] entities (FULL)", flush=True)
-        # No limit -> extract for all markets missing entities
-        extract_entities(db)
+        print("[4/6] entities", flush=True)
+        extract_entities(db)  # your existing pipeline
 
-        print("[5/6] edges semantic/entity/stat (FULL)", flush=True)
-        # No max_n -> use all embeddings
-        # Keep k modest; semantic edges scale ~ O(N*k) for storage but similarity compute can blow up if implemented dense.
-        # If your build_semantic_edges currently computes a full NxN similarity matrix, you MUST keep max_n or rewrite it.
-        se = build_semantic_edges(db, k=35)
-        ee = build_entity_edges(db, max_markets_per_entity=400)
+        print("  -> semantic start", flush=True)
+        se = build_semantic_edges(db)
+        print(f"  -> semantic done inserted={se}", flush=True)
+
+        print("  -> entity start", flush=True)
+        ee = build_entity_edges(db, max_markets_per_entity=200)
+        print(f"  -> entity done inserted={ee}", flush=True)
+
+        print("  -> kw start", flush=True)
+        ke = build_keyword_edges(db, per_market_top_terms=12, min_shared=2, max_bucket=300)
+        print(f"  -> kw done inserted={ke}", flush=True)
+
+        print("  -> stat start", flush=True)
         st = build_stat_edges(db)
-        print(f"[5/6] semantic={se} entity={ee} stat={st}", flush=True)
+        print(f"  -> stat done inserted={st}", flush=True)
 
-        print("[6/6] final fuse (FULL)", flush=True)
+
+        print("[6/6] final fuse", flush=True)
         fe = build_final_edges(db)
-        print(f"[6/6] final_edges_upserted~={fe}", flush=True)
+        print(f"[6/6] final_upserted~={fe}", flush=True)
 
         print("[done] build_graph_once completed", flush=True)
     finally:
         db.close()
-
 
 if __name__ == "__main__":
     asyncio.run(main())

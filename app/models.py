@@ -40,6 +40,8 @@ class Market(Base):
     clob_token_ids = Column(JSON, nullable=True)
 
     updated_at = Column(DateTime(timezone=True), nullable=True)
+    event_title = Column(Text, nullable=True)
+    tags = Column(JSON, nullable=True)  # store list[int] or list[str]
 
 
 class Token(Base):

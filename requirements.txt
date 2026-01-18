@@ -23,6 +23,7 @@ numpy==1.26.4
 thinc==8.2.5
 spacy==3.7.6
 hnswlib==0.8.0
+faiss-cpu
 
 # NLP
 sentence-transformers
