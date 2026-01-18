@@ -9,7 +9,7 @@ from typing import Dict, List
 from fastapi import FastAPI, HTTPException, Query
 
 
-CSV_PATH = os.getenv("EDGES_CSV_PATH", xqx"edges.csv")  # set env var or put file as edges.csv
+CSV_PATH = os.getenv("EDGES_CSV_PATH", "edges.csv")  # set env var or put file as edges.csv
 
 
 @dataclass(frozen=True)
