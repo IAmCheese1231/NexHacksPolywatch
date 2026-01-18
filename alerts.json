@@ -1,0 +1,870 @@
+[
+  {
+    "timestamp": "2026-01-15T08:55:14+00:00",
+    "market_id": "517310",
+    "p": 0.0295,
+    "anomaly_score": 0.9154416634569549,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T10:20:14+00:00",
+    "market_id": "517310",
+    "p": 0.044,
+    "anomaly_score": 0.9154472669690868,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T01:35:15+00:00",
+    "market_id": "517311",
+    "p": 0.918,
+    "anomaly_score": 0.915501276934933,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T01:40:12+00:00",
+    "market_id": "517311",
+    "p": 0.9055,
+    "anomaly_score": 0.906105823823433,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.96 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T04:05:12+00:00",
+    "market_id": "517311",
+    "p": 0.9065,
+    "anomaly_score": 0.9152007013925417,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T07:30:30+00:00",
+    "market_id": "517311",
+    "p": 0.8985,
+    "anomaly_score": 0.9141905280879644,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=0.98 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T15:50:14+00:00",
+    "market_id": "517311",
+    "p": 0.885,
+    "anomaly_score": 0.9154526192680011,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:30:20+00:00",
+    "market_id": "517311",
+    "p": 0.8845,
+    "anomaly_score": 0.9130101202757906,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T02:40:14+00:00",
+    "market_id": "517311",
+    "p": 0.8995,
+    "anomaly_score": 0.9153027951647692,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T03:05:14+00:00",
+    "market_id": "517311",
+    "p": 0.899,
+    "anomaly_score": 0.915501659606526,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T03:45:13+00:00",
+    "market_id": "517311",
+    "p": 0.8995,
+    "anomaly_score": 0.9154422412848523,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T03:50:14+00:00",
+    "market_id": "517311",
+    "p": 0.8945,
+    "anomaly_score": 0.90134267234455,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.94 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T04:20:13+00:00",
+    "market_id": "517311",
+    "p": 0.905,
+    "anomaly_score": 0.915502676104994,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T04:45:26+00:00",
+    "market_id": "517311",
+    "p": 0.906,
+    "anomaly_score": 0.9119406451033493,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T04:55:14+00:00",
+    "market_id": "517311",
+    "p": 0.8905,
+    "anomaly_score": 0.9155013427204625,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T05:00:29+00:00",
+    "market_id": "517311",
+    "p": 0.896,
+    "anomaly_score": 0.9153886412110668,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T05:05:16+00:00",
+    "market_id": "517311",
+    "p": 0.9,
+    "anomaly_score": 0.7417277441381854,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=0.40 | deep=0.78 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T05:25:14+00:00",
+    "market_id": "517311",
+    "p": 0.8995,
+    "anomaly_score": 0.9105849117231317,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.98 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T05:35:13+00:00",
+    "market_id": "517311",
+    "p": 0.892,
+    "anomaly_score": 0.915478221894037,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T06:15:14+00:00",
+    "market_id": "517311",
+    "p": 0.901,
+    "anomaly_score": 0.9155026760090156,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T06:20:25+00:00",
+    "market_id": "517311",
+    "p": 0.928,
+    "anomaly_score": 0.9155026761086729,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-18T06:30:17+00:00",
+    "market_id": "517311",
+    "p": 0.917,
+    "anomaly_score": 0.9032398490730548,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.95 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T16:10:12+00:00",
+    "market_id": "517313",
+    "p": 0.0665,
+    "anomaly_score": 0.9152976489733347,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:20:31+00:00",
+    "market_id": "517313",
+    "p": 0.0565,
+    "anomaly_score": 0.9137928760671084,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:25:14+00:00",
+    "market_id": "517313",
+    "p": 0.0575,
+    "anomaly_score": 0.7148966246138088,
+    "explanation": "price=0.44 | liq=0.25 | corr=0.92 | cusum=1.00 | ml=0.70 | deep=0.83 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:50:16+00:00",
+    "market_id": "517313",
+    "p": 0.053,
+    "anomaly_score": 0.9012821100354785,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.94 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-11T22:05:14+00:00",
+    "market_id": "517314",
+    "p": 0.064,
+    "anomaly_score": 0.915182168649063,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-11T22:10:28+00:00",
+    "market_id": "517314",
+    "p": 0.0585,
+    "anomaly_score": 0.8553057575364134,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T10:25:13+00:00",
+    "market_id": "517314",
+    "p": 0.0195,
+    "anomaly_score": 0.9143104064827903,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T10:30:34+00:00",
+    "market_id": "517314",
+    "p": 0.0175,
+    "anomaly_score": 0.8553065258377929,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T21:45:15+00:00",
+    "market_id": "517314",
+    "p": 0.031,
+    "anomaly_score": 0.9153076886065031,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T13:55:15+00:00",
+    "market_id": "517314",
+    "p": 0.017,
+    "anomaly_score": 0.915307688588148,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T13:00:22+00:00",
+    "market_id": "517314",
+    "p": 0.019,
+    "anomaly_score": 0.9152953626001762,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-17T06:15:15+00:00",
+    "market_id": "517314",
+    "p": 0.017,
+    "anomaly_score": 0.9126666255130348,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-17T06:25:15+00:00",
+    "market_id": "517314",
+    "p": 0.016,
+    "anomaly_score": 0.9140303753426763,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-17T16:40:20+00:00",
+    "market_id": "517314",
+    "p": 0.0155,
+    "anomaly_score": 0.9001130370675231,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.94 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-17T17:50:15+00:00",
+    "market_id": "517314",
+    "p": 0.019,
+    "anomaly_score": 0.9153076885132426,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T08:30:27+00:00",
+    "market_id": "517315",
+    "p": 0.0145,
+    "anomaly_score": 0.9152550642058609,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T08:35:13+00:00",
+    "market_id": "517315",
+    "p": 0.014,
+    "anomaly_score": 0.8351919485568795,
+    "explanation": "price=0.93 | liq=0.25 | corr=0.93 | cusum=1.00 | ml=0.70 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T08:40:12+00:00",
+    "market_id": "517315",
+    "p": 0.007,
+    "anomaly_score": 0.9152550642058609,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:45:14+00:00",
+    "market_id": "517315",
+    "p": 0.0065,
+    "anomaly_score": 0.9152550642058609,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T07:30:23+00:00",
+    "market_id": "517316",
+    "p": 0.011,
+    "anomaly_score": 0.915060682890904,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T07:35:09+00:00",
+    "market_id": "517316",
+    "p": 0.0105,
+    "anomaly_score": 0.8246874801797691,
+    "explanation": "price=0.99 | liq=0.24 | corr=0.99 | cusum=1.00 | ml=0.70 | deep=0.89 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:25:11+00:00",
+    "market_id": "517317",
+    "p": 0.0125,
+    "anomaly_score": 0.9150515256173481,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T09:35:21+00:00",
+    "market_id": "517317",
+    "p": 0.011,
+    "anomaly_score": 0.9093503162076269,
+    "explanation": "price=0.98 | liq=0.24 | corr=0.98 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T09:40:12+00:00",
+    "market_id": "517317",
+    "p": 0.007,
+    "anomaly_score": 0.8507528723875358,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=0.05 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T08:25:15+00:00",
+    "market_id": "517318",
+    "p": 0.007,
+    "anomaly_score": 0.9148793850738098,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T12:50:08+00:00",
+    "market_id": "521944",
+    "p": 0.8205,
+    "anomaly_score": 0.9137335986728053,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T12:55:19+00:00",
+    "market_id": "521944",
+    "p": 0.8895,
+    "anomaly_score": 0.8004372642723837,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=0.79 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T16:45:09+00:00",
+    "market_id": "521944",
+    "p": 0.964,
+    "anomaly_score": 0.9137336181886566,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T16:55:09+00:00",
+    "market_id": "521944",
+    "p": 0.9535,
+    "anomaly_score": 0.9135676476445217,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T15:45:10+00:00",
+    "market_id": "521944",
+    "p": 0.9665,
+    "anomaly_score": 0.9137336168407973,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T03:55:12+00:00",
+    "market_id": "521944",
+    "p": 0.9415,
+    "anomaly_score": 0.9077336561640702,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.98 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T04:00:11+00:00",
+    "market_id": "521944",
+    "p": 0.9455,
+    "anomaly_score": 0.6879516519572432,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=0.40 | deep=0.58 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T19:45:12+00:00",
+    "market_id": "521945",
+    "p": 0.011,
+    "anomaly_score": 0.9118249540154593,
+    "explanation": "price=1.00 | liq=0.22 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:25:12+00:00",
+    "market_id": "521945",
+    "p": 0.0035,
+    "anomaly_score": 0.9116891214702209,
+    "explanation": "price=1.00 | liq=0.22 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:30:13+00:00",
+    "market_id": "521945",
+    "p": 0.011,
+    "anomaly_score": 0.9118249540405824,
+    "explanation": "price=1.00 | liq=0.22 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T09:35:22+00:00",
+    "market_id": "521945",
+    "p": 0.0145,
+    "anomaly_score": 0.9118249536998343,
+    "explanation": "price=1.00 | liq=0.22 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T09:40:14+00:00",
+    "market_id": "521945",
+    "p": 0.0135,
+    "anomaly_score": 0.8103931143274151,
+    "explanation": "price=1.00 | liq=0.22 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=0.84 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T21:55:11+00:00",
+    "market_id": "521946",
+    "p": 0.0105,
+    "anomaly_score": 0.906378655739496,
+    "explanation": "price=1.00 | liq=0.17 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:20:14+00:00",
+    "market_id": "521947",
+    "p": 0.014,
+    "anomaly_score": 0.9067628805465956,
+    "explanation": "price=1.00 | liq=0.17 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T03:50:11+00:00",
+    "market_id": "521947",
+    "p": 0.007,
+    "anomaly_score": 0.9067628805465956,
+    "explanation": "price=1.00 | liq=0.17 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T03:55:11+00:00",
+    "market_id": "521947",
+    "p": 0.008,
+    "anomaly_score": 0.8459230056752116,
+    "explanation": "price=1.00 | liq=0.17 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-11T22:30:12+00:00",
+    "market_id": "537486",
+    "p": 0.375,
+    "anomaly_score": 0.9150386099186524,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T00:00:17+00:00",
+    "market_id": "537486",
+    "p": 0.375,
+    "anomaly_score": 0.9087230799262401,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.97 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T05:15:11+00:00",
+    "market_id": "537486",
+    "p": 0.33,
+    "anomaly_score": 0.915038609073317,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T20:55:12+00:00",
+    "market_id": "537486",
+    "p": 0.32,
+    "anomaly_score": 0.9079212424429698,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=0.99 | ml=1.00 | deep=0.97 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T21:00:19+00:00",
+    "market_id": "537486",
+    "p": 0.325,
+    "anomaly_score": 0.7978541358098432,
+    "explanation": "price=1.00 | liq=0.24 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=0.77 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T07:30:18+00:00",
+    "market_id": "537488",
+    "p": 0.0035,
+    "anomaly_score": 0.9145677576803877,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:35:14+00:00",
+    "market_id": "537488",
+    "p": 0.003,
+    "anomaly_score": 0.9155997500832167,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:40:27+00:00",
+    "market_id": "537488",
+    "p": 0.0025,
+    "anomaly_score": 0.9155997500832167,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:45:15+00:00",
+    "market_id": "537488",
+    "p": 0.002,
+    "anomaly_score": 0.9155937929905111,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T20:25:11+00:00",
+    "market_id": "537490",
+    "p": 0.0285,
+    "anomaly_score": 0.9090719455491061,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.98 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T20:30:13+00:00",
+    "market_id": "537490",
+    "p": 0.03,
+    "anomaly_score": 0.9071570501932992,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.98 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T20:35:10+00:00",
+    "market_id": "537490",
+    "p": 0.031,
+    "anomaly_score": 0.8296807793747203,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=0.91 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T06:05:11+00:00",
+    "market_id": "537490",
+    "p": 0.024,
+    "anomaly_score": 0.9120601402160529,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T07:45:11+00:00",
+    "market_id": "537490",
+    "p": 0.024,
+    "anomaly_score": 0.913044401186638,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T07:55:12+00:00",
+    "market_id": "537490",
+    "p": 0.024,
+    "anomaly_score": 0.9114059065370482,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T08:00:28+00:00",
+    "market_id": "537490",
+    "p": 0.0235,
+    "anomaly_score": 0.9097931449573545,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:05:10+00:00",
+    "market_id": "537490",
+    "p": 0.032,
+    "anomaly_score": 0.9130315209346996,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:45:10+00:00",
+    "market_id": "537490",
+    "p": 0.0385,
+    "anomaly_score": 0.9051392999901037,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.97 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T09:50:12+00:00",
+    "market_id": "537490",
+    "p": 0.044,
+    "anomaly_score": 0.9131989904193281,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T10:00:12+00:00",
+    "market_id": "537490",
+    "p": 0.045,
+    "anomaly_score": 0.9132229075818555,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T10:05:11+00:00",
+    "market_id": "537490",
+    "p": 0.044,
+    "anomaly_score": 0.9132235428251142,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T10:10:11+00:00",
+    "market_id": "537490",
+    "p": 0.0445,
+    "anomaly_score": 0.8499669788936872,
+    "explanation": "price=0.99 | liq=0.23 | corr=0.99 | cusum=1.00 | ml=0.70 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T13:15:10+00:00",
+    "market_id": "537490",
+    "p": 0.036,
+    "anomaly_score": 0.9131699395894177,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T13:20:11+00:00",
+    "market_id": "537490",
+    "p": 0.0385,
+    "anomaly_score": 0.8643696699846755,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.80 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T03:45:12+00:00",
+    "market_id": "537490",
+    "p": 0.022,
+    "anomaly_score": 0.9126503137141281,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T08:35:11+00:00",
+    "market_id": "537490",
+    "p": 0.0215,
+    "anomaly_score": 0.912438763660368,
+    "explanation": "price=1.00 | liq=0.23 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T01:40:10+00:00",
+    "market_id": "541517",
+    "p": 0.91,
+    "anomaly_score": 0.9154853080659006,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T01:45:09+00:00",
+    "market_id": "541517",
+    "p": 0.9,
+    "anomaly_score": 0.8017795025331317,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=0.70 | deep=0.79 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-11T20:30:25+00:00",
+    "market_id": "541518",
+    "p": 0.0095,
+    "anomaly_score": 0.9157092076442876,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-11T20:35:10+00:00",
+    "market_id": "541518",
+    "p": 0.007,
+    "anomaly_score": 0.8514104080159773,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=0.05 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:30:10+00:00",
+    "market_id": "541518",
+    "p": 0.0235,
+    "anomaly_score": 0.9157092076442876,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:35:10+00:00",
+    "market_id": "541518",
+    "p": 0.0225,
+    "anomaly_score": 0.7957090349461561,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=0.40 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-17T20:25:11+00:00",
+    "market_id": "541518",
+    "p": 0.013,
+    "anomaly_score": 0.9144009559496391,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T04:30:10+00:00",
+    "market_id": "541519",
+    "p": 0.057,
+    "anomaly_score": 0.9101724806683145,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.98 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T04:40:23+00:00",
+    "market_id": "541519",
+    "p": 0.0515,
+    "anomaly_score": 0.9044220485120532,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.96 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T04:50:10+00:00",
+    "market_id": "541519",
+    "p": 0.0515,
+    "anomaly_score": 0.9028584373607444,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.95 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-13T18:55:10+00:00",
+    "market_id": "541519",
+    "p": 0.0175,
+    "anomaly_score": 0.9155315794164253,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T12:50:11+00:00",
+    "market_id": "541519",
+    "p": 0.044,
+    "anomaly_score": 0.9024955275830489,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.95 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T17:50:13+00:00",
+    "market_id": "541519",
+    "p": 0.0165,
+    "anomaly_score": 0.9155315794884747,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T15:50:11+00:00",
+    "market_id": "541520",
+    "p": 0.0025,
+    "anomaly_score": 0.915730112046545,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T15:55:11+00:00",
+    "market_id": "541520",
+    "p": 0.01,
+    "anomaly_score": 0.91573011228451,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T16:00:12+00:00",
+    "market_id": "541520",
+    "p": 0.0105,
+    "anomaly_score": 0.7702122065605052,
+    "explanation": "price=0.91 | liq=0.25 | corr=0.91 | cusum=1.00 | ml=0.40 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T13:45:20+00:00",
+    "market_id": "541523",
+    "p": 0.0135,
+    "anomaly_score": 0.914368765737526,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T14:30:25+00:00",
+    "market_id": "541523",
+    "p": 0.008,
+    "anomaly_score": 0.9156836816752735,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T14:35:16+00:00",
+    "market_id": "541523",
+    "p": 0.009,
+    "anomaly_score": 0.9156667163187363,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T14:40:15+00:00",
+    "market_id": "541523",
+    "p": 0.0085,
+    "anomaly_score": 0.9046162784219675,
+    "explanation": "price=0.96 | liq=0.25 | corr=0.96 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:40:32+00:00",
+    "market_id": "541523",
+    "p": 0.0175,
+    "anomaly_score": 0.906851527087923,
+    "explanation": "price=0.97 | liq=0.25 | corr=0.97 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:45:18+00:00",
+    "market_id": "541523",
+    "p": 0.0015,
+    "anomaly_score": 0.8513705691073546,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=0.05 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:40:11+00:00",
+    "market_id": "541527",
+    "p": 0.0015,
+    "anomaly_score": 0.9157750168449833,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T23:45:24+00:00",
+    "market_id": "541527",
+    "p": 0.001,
+    "anomaly_score": 0.904999359699283,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.96 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T11:50:15+00:00",
+    "market_id": "541527",
+    "p": 0.0205,
+    "anomaly_score": 0.9157013546607318,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T11:05:11+00:00",
+    "market_id": "541527",
+    "p": 0.0245,
+    "anomaly_score": 0.9123225315866839,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:50:16+00:00",
+    "market_id": "541531",
+    "p": 0.008,
+    "anomaly_score": 0.9157348972114207,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T22:55:16+00:00",
+    "market_id": "541531",
+    "p": 0.0045,
+    "anomaly_score": 0.9155420535506746,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-15T23:00:22+00:00",
+    "market_id": "541531",
+    "p": 0.0035,
+    "anomaly_score": 0.790034031862867,
+    "explanation": "price=1.00 | liq=0.25 | corr=1.00 | cusum=0.05 | ml=0.70 | deep=0.99 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-12T19:50:14+00:00",
+    "market_id": "541554",
+    "p": 0.0015,
+    "anomaly_score": 0.903685948508732,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T22:55:17+00:00",
+    "market_id": "541554",
+    "p": 0.001,
+    "anomaly_score": 0.9036859453370817,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T20:45:12+00:00",
+    "market_id": "541559",
+    "p": 0.031,
+    "anomaly_score": 0.9034789377077728,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T16:45:12+00:00",
+    "market_id": "541559",
+    "p": 0.0305,
+    "anomaly_score": 0.9036432560254165,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-16T16:55:10+00:00",
+    "market_id": "541559",
+    "p": 0.033,
+    "anomaly_score": 0.903631717431498,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  },
+  {
+    "timestamp": "2026-01-14T07:50:13+00:00",
+    "market_id": "541565",
+    "p": 0.031,
+    "anomaly_score": 0.9036158436230212,
+    "explanation": "price=1.00 | liq=0.14 | corr=1.00 | cusum=1.00 | ml=1.00 | deep=1.00 | hybrid=1.00"
+  }
+]
