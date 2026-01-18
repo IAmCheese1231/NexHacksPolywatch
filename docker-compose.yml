@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: polygraph
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/polygraph
+      GAMMA_BASE: https://gamma-api.polymarket.com
+      CLOB_BASE: https://clob.polymarket.com
+      EMBEDDING_MODEL: sentence-transformers/all-MiniLM-L6-v2
+      INGEST_MAX_PAGES: "250"
+      PRICE_LOOKBACK_HOURS: "720"   # 30 days
+      PRICE_GRANULARITY_MIN: "60"
+      TOPK_SEMANTIC: "30"
+      TOPK_ENTITY: "60"
+      TOPK_FINAL: "25"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+    command: ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  pgdata:
+  hf_cache:
