@@ -60,7 +60,7 @@ function getPortfolioBackendBase(): string {
     process.env.POLYWATCH_ANOMALY_BACKEND_URL ||
     process.env.ANOMALY_BACKEND_URL ||
     process.env.NEXT_PUBLIC_ANOMALY_BACKEND_URL ||
-    (process.env.NODE_ENV === "development" ? "http://127.0.0.1:8000" : "");
+    (process.env.NODE_ENV === "development" ? "http://127.0.0.1:8002" : "");
 
   return (raw || "").replace(/\/$/, "");
 }
@@ -203,22 +203,39 @@ export async function POST(req: Request) {
 
     const outcomeIndex = resolveOutcomeIndex(market, outcome);
 
-    const resp = await fetch(`${backendBase}/portfolio/add`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      cache: "no-store",
-      body: JSON.stringify({
-        event_slug: eventSlugOrId,
-        market_slug: marketSlug,
-        outcome_index: outcomeIndex,
-        shares,
-      }),
-    });
+    let resp: Response;
+    try {
+      resp = await fetch(`${backendBase}/portfolio/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        cache: "no-store",
+        body: JSON.stringify({
+          event_slug: eventSlugOrId,
+          market_slug: marketSlug,
+          outcome_index: outcomeIndex,
+          shares,
+        }),
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      return NextResponse.json(
+        {
+          error: "Portfolio backend unreachable",
+          details: msg,
+          backend: backendBase,
+        },
+        { status: 502 }
+      );
+    }
 
     const text = await resp.text().catch(() => "");
     if (!resp.ok) {
       return NextResponse.json(
-        { error: "Failed to add to portfolio" },
+        {
+          error: "Failed to add to portfolio",
+          details: text || undefined,
+          backend: backendBase,
+        },
         { status: 502 }
       );
     }
@@ -227,9 +244,10 @@ export async function POST(req: Request) {
       status: 200,
       headers: { "Content-Type": resp.headers.get("content-type") || "application/json" },
     });
-  } catch {
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
     return NextResponse.json(
-      { error: "Failed to add to portfolio" },
+      { error: "Failed to add to portfolio", details: msg || undefined },
       { status: 500 }
     );
   }

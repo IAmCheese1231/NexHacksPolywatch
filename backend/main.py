@@ -189,9 +189,9 @@ class CorrelationParameter(BaseModel):
     name: str
     current_value: float
     projected_value: float
-    unit: str | None = None
-    asset_type: str | None = None
-    change: float | None = None
+    unit: Optional[str] = None
+    asset_type: Optional[str] = None
+    change: Optional[float] = None
 
 
 class PredictRequest(BaseModel):
@@ -496,3 +496,16 @@ def predict(req: PredictRequest):
     overall = 0.55
     return PredictResponse(overall_confidence=overall, outcomes=outcomes)
     return {"ok": True, "count": 0}
+
+
+if __name__ == "__main__":
+    import sys
+    from pathlib import Path
+    import uvicorn
+
+    repo_root = str(Path(__file__).resolve().parents[1])
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=port, reload=True)
