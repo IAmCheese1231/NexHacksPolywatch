@@ -42,13 +42,13 @@ export default function PortfolioHistogram({ positions }) {
   }
 
   return (
-    <div style={{ border: "1px solid #ddd", borderRadius: 12, padding: 16, marginTop: 12 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <h2 style={{ marginTop: 0, marginBottom: 8 }}>Monte Carlo histogram</h2>
+    <div>
+      <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
+        <div style={{ fontWeight: 700 }}>Simulation</div>
         <button
           onClick={run}
           disabled={running || positions.length === 0}
-          style={{ padding: "8px 12px", borderRadius: 10, border: "1px solid #ccc" }}
+          className="button"
         >
           {running ? "Running..." : "Run simulation"}
         </button>
@@ -61,15 +61,15 @@ export default function PortfolioHistogram({ positions }) {
       </div>
 
       {running && progress.total > 0 && (
-        <div style={{ fontSize: 12, opacity: 0.75, marginBottom: 8 }}>
+        <div className="subtle" style={{ marginBottom: 8 }}>
           Progress: {progress.done.toLocaleString()} / {progress.total.toLocaleString()}
         </div>
       )}
 
-      {err && <pre style={{ color: "#b00020", whiteSpace: "pre-wrap" }}>{err}</pre>}
+      {err && <pre style={{ color: "rgba(244,63,94,0.95)", whiteSpace: "pre-wrap" }}>{err}</pre>}
 
       {!result ? (
-        <div style={{ opacity: 0.7, fontSize: 14 }}>
+        <div className="subtle" style={{ fontSize: 14 }}>
           Run a simulation to see the probability distribution of terminal payout (assumes markets independent).
         </div>
       ) : (
@@ -89,14 +89,15 @@ export default function PortfolioHistogram({ positions }) {
 function LabeledNumber({ label, value, setValue, min, step }) {
   return (
     <label style={{ display: "flex", gap: 6, alignItems: "center", fontSize: 13, opacity: 0.9 }}>
-      <span style={{ opacity: 0.7 }}>{label}</span>
+      <span className="subtle">{label}</span>
       <input
         type="number"
         value={value}
         min={min}
         step={step}
         onChange={(e) => setValue(Number(e.target.value))}
-        style={{ width: 110, padding: 6, borderRadius: 8, border: "1px solid #ccc" }}
+        className="input"
+        style={{ width: 130, padding: "8px 10px" }}
       />
     </label>
   );
@@ -112,8 +113,8 @@ function HistogramBars({ bins, overflowProb, maxProb }) {
             <div style={{ fontSize: 12, opacity: 0.8 }}>
               ${b.range[0].toFixed(0)}–{b.range[1].toFixed(0)}
             </div>
-            <div style={{ height: 12, borderRadius: 999, border: "1px solid #ddd", overflow: "hidden" }}>
-              <div style={{ height: "100%", width: `${w}%`, background: "#111" }} />
+            <div className="barTrack">
+              <div className="barFill" style={{ width: `${w}%` }} />
             </div>
             <div style={{ fontSize: 12, textAlign: "right", opacity: 0.9 }}>
               {(b.probability * 100).toFixed(2)}%
@@ -125,12 +126,11 @@ function HistogramBars({ bins, overflowProb, maxProb }) {
       {/* Overflow bin */}
       <div style={{ display: "grid", gridTemplateColumns: "140px 1fr 80px", gap: 8, alignItems: "center", marginTop: 6 }}>
         <div style={{ fontSize: 12, opacity: 0.8 }}>≥ max</div>
-        <div style={{ height: 12, borderRadius: 999, border: "1px solid #ddd", overflow: "hidden" }}>
+        <div className="barTrack">
           <div
+            className="barFill"
             style={{
-              height: "100%",
               width: `${maxProb > 0 ? (overflowProb / maxProb) * 100 : 0}%`,
-              background: "#111",
             }}
           />
         </div>

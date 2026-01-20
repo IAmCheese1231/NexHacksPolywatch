@@ -64,12 +64,10 @@ export default function AddPosition({ onAdded }) {
   }
 
   return (
-    <div style={{border: "1px solid #ddd", borderRadius: 12, padding: 16}}>
-      <h2 style={{marginTop: 0}}>Add a position</h2>
-
-      <div style={{display: "flex", gap: 8, alignItems: "center"}}>
+    <div>
+      <div className="row">
         <input
-          style={{flex: 1, padding: 10, borderRadius: 10, border: "1px solid #ccc"}}
+          className="input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Paste Polymarket event URL or event slug"
@@ -77,15 +75,15 @@ export default function AddPosition({ onAdded }) {
         <button
           onClick={handleResolve}
           disabled={loading}
-          style={{padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc"}}
+          className="button"
         >
           {loading ? "Loading..." : "Load"}
         </button>
       </div>
 
       {eventSlug && (
-        <div style={{marginTop: 12, fontSize: 14}}>
-          Event slug: <code>{eventSlug}</code>
+        <div style={{ marginTop: 12, fontSize: 14 }}>
+          Event slug: <span className="code">{eventSlug}</span>
         </div>
       )}
 
@@ -96,7 +94,6 @@ export default function AddPosition({ onAdded }) {
             <select
               value={marketSlug}
               onChange={(e) => { setMarketSlug(e.target.value); setOutcomeIndex(0); }}
-              style={{width: "100%", padding: 10, borderRadius: 10, border: "1px solid #ccc"}}
             >
               {markets.map((m) => (
                 <option key={m.slug} value={m.slug}>
@@ -111,7 +108,6 @@ export default function AddPosition({ onAdded }) {
             <select
               value={outcomeIndex}
               onChange={(e) => setOutcomeIndex(Number(e.target.value))}
-              style={{width: "100%", padding: 10, borderRadius: 10, border: "1px solid #ccc"}}
             >
               {outcomes.map((o) => (
                 <option key={o.index} value={o.index}>
@@ -128,7 +124,7 @@ export default function AddPosition({ onAdded }) {
                 type="number"
                 value={shares}
                 onChange={(e) => setShares(e.target.value)}
-                style={{width: "100%", padding: 10, borderRadius: 10, border: "1px solid #ccc"}}
+                className="input"
                 placeholder="e.g. 120"
                 min="0"
                 step="any"
@@ -137,7 +133,7 @@ export default function AddPosition({ onAdded }) {
             <button
               onClick={handleAdd}
               disabled={loading}
-              style={{padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc"}}
+              className="button"
             >
               Add
             </button>
@@ -146,7 +142,7 @@ export default function AddPosition({ onAdded }) {
       )}
 
       {err && (
-        <pre style={{marginTop: 12, color: "#b00020", whiteSpace: "pre-wrap"}}>
+        <pre style={{marginTop: 12, color: "rgba(244,63,94,0.95)", whiteSpace: "pre-wrap"}}>
 {err}
         </pre>
       )}

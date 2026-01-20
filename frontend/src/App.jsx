@@ -25,108 +25,103 @@ export default function App() {
   }
 
   useEffect(() => {
-    refresh();
+    const id = window.setTimeout(() => {
+      refresh();
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    if (!root) return;
+
+    const postHeight = () => {
+      // Measure *content* height only (avoid using offsetHeight which includes viewport).
+      const height = root.scrollHeight;
+      if (height > 0) {
+        window.parent?.postMessage(
+          { type: "POLYWATCH_PORTFOLIO_HEIGHT", height },
+          "*"
+        );
+      }
+    };
+
+    // Initial + next tick (after fonts/layout settle)
+    postHeight();
+    const raf = window.requestAnimationFrame(postHeight);
+
+    let resizeObserver;
+    if ("ResizeObserver" in window) {
+      resizeObserver = new ResizeObserver(() => postHeight());
+      resizeObserver.observe(root);
+    }
+
+    window.addEventListener("resize", postHeight);
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.removeEventListener("resize", postHeight);
+      resizeObserver?.disconnect?.();
+    };
   }, []);
 
   return (
-    <div className="bg-light min-vh-100">
-      <div className="container py-4">
-
-        {/* ===== Header ===== */}
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+    <div>
+      <div className="container">
+        <div className="topbar">
           <div>
-            <div className="text-uppercase text-muted small">
-              Polymarket Portfolio • Risk
-            </div>
-            <h1 className="h3 mb-1">Portfolio Risk Dashboard</h1>
-            <div className="text-muted">
-              Terminal payout distribution using implied probabilities
-            </div>
+            <div className="h1">Dashboard</div>
           </div>
 
-          <div className="d-flex gap-2">
-            <button
-              className="btn btn-outline-secondary"
-              onClick={refresh}
-            >
+          <div className="row" style={{ justifyContent: "flex-end" }}>
+            <button className="button" onClick={refresh}>
               Refresh
             </button>
-            <button
-              className="btn btn-danger"
-              onClick={handleClear}
-            >
+            <button className="button" onClick={handleClear}>
               Clear portfolio
             </button>
           </div>
         </div>
 
-        {/* ===== Add Position ===== */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card shadow-sm">
-              <div className="card-body">
-                <h2 className="h6 mb-3">Add position</h2>
-                <AddPosition onAdded={refresh} />
-              </div>
-            </div>
-          </div>
+        <div className="card">
+          <h2>Add position</h2>
+          <AddPosition onAdded={refresh} />
         </div>
 
-        {/* ===== Stats ===== */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card shadow-sm">
-              <div className="card-body">
-                <h2 className="h6 mb-3">Portfolio stats</h2>
-                <PortfolioStats positions={positions} />
-              </div>
-            </div>
-          </div>
+        <div style={{ height: 12 }} />
+
+        <div className="card">
+          <h2>Portfolio stats</h2>
+          <PortfolioStats positions={positions} />
         </div>
 
-        {/* ===== Histogram (wide) ===== */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card shadow-sm">
-              <div className="card-body">
-                <div className="d-flex justify-content-between align-items-baseline mb-2">
-                  <h2 className="h6 mb-0">Monte Carlo histogram</h2>
-                  <span className="text-muted small">
-                    0 → 5× EV (plus overflow)
-                  </span>
-                </div>
-                <PortfolioHistogram positions={positions} />
-              </div>
-            </div>
+        <div style={{ height: 12 }} />
+
+        <div className="card">
+          <div className="row" style={{ justifyContent: "space-between" }}>
+            <h2 style={{ margin: 0 }}>Monte Carlo histogram</h2>
           </div>
+          <div style={{ height: 10 }} />
+          <PortfolioHistogram positions={positions} />
         </div>
 
-        {/* ===== Positions Table ===== */}
-        <div className="row">
-          <div className="col-12">
-            <div className="card shadow-sm">
-              <div className="card-body">
-                <h2 className="h6 mb-3">Positions</h2>
-                <PortfolioTable positions={positions} />
-              </div>
-            </div>
-          </div>
+        <div style={{ height: 12 }} />
+
+        <div className="card">
+          <h2>Positions</h2>
+          <PortfolioTable positions={positions} />
         </div>
 
-        {/* ===== Error ===== */}
         {err && (
-          <div className="alert alert-danger mt-4 mb-0">
-            <div className="fw-semibold">Error</div>
-            <pre className="mb-0">{err}</pre>
+          <div className="card" style={{ borderColor: "rgba(244,63,94,0.25)" }}>
+            <h2>Error</h2>
+            <pre style={{ whiteSpace: "pre-wrap", margin: 0 }}>{err}</pre>
           </div>
         )}
 
-        {/* ===== Footer note ===== */}
-        <div className="text-muted small mt-4">
+        <div className="subtle" style={{ marginTop: 14 }}>
           Assumes independence across markets; outcomes within each market are
           mutually exclusive.
         </div>
-
       </div>
     </div>
   );

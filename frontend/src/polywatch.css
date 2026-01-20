@@ -1,0 +1,79 @@
+/*
+  Polywatch theme overrides for the embedded Vite dashboard.
+  Goal: visually match the Next.js shell (dark, soft borders, subtle glow).
+*/
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #070b17;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+/* Bootstrap overrides (scoped by selectors, not by extra wrapper classes) */
+
+.container {
+  max-width: 72rem;
+}
+
+.text-muted {
+  color: rgba(203, 213, 225, 0.6) !important;
+}
+
+.bg-light {
+  background: transparent !important;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px -20px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(10px);
+}
+
+.card-body {
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.btn {
+  border-radius: 16px !important;
+}
+
+.btn-outline-secondary {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: rgba(226, 232, 240, 0.92) !important;
+}
+
+.btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.btn-danger {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+}
+
+.alert-danger {
+  background: rgba(244, 63, 94, 0.12) !important;
+  border-color: rgba(244, 63, 94, 0.25) !important;
+  color: rgba(254, 226, 226, 0.92) !important;
+}
+
+pre {
+  color: inherit;
+}
+
+/* Tighten default spacing for embedded view */
+
+.container.py-4 {
+  padding-top: 1.25rem !important;
+  padding-bottom: 1.25rem !important;
+}

@@ -30,6 +30,18 @@ def load_graph(csv_path: str) -> Dict[int, List[Edge]]:
     graph: Dict[int, List[Edge]] = {}
 
     with open(csv_path, "r", newline="") as f:
+        # Common pitfall: large CSVs are stored via Git LFS.
+        # If LFS objects were not pulled, the file contents are just a small pointer.
+        first_line = f.readline().strip()
+        if first_line == "version https://git-lfs.github.com/spec/v1":
+            raise ValueError(
+                "EDGES_CSV_PATH points to a Git LFS pointer, not the real CSV. "
+                "Run `git lfs install` and `git lfs pull`, or replace the file with the actual CSV, "
+                f"then retry. path={csv_path}"
+            )
+
+        # Rewind so DictReader sees the header line.
+        f.seek(0)
         reader = csv.DictReader(f)
         expected = {"src_market_id", "dst_market_id", "weight"}
         if set(reader.fieldnames or []) != expected:

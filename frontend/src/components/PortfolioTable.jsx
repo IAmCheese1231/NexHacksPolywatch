@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { prettyProb } from "../utils";
+import { adjustPositionShares } from "../api";
 
 function positionEV(p) {
   const shares = Number(p.shares);
@@ -16,59 +17,136 @@ function positionVar(p) {
 }
 
 export default function PortfolioTable({ positions }) {
-  return (
-    <div style={{ border: "1px solid #ddd", borderRadius: 12, padding: 16 }}>
-      <h2 style={{ marginTop: 0 }}>Portfolio</h2>
+  const [busyKey, setBusyKey] = useState(null);
+  const [amountByKey, setAmountByKey] = useState({});
+  const [err, setErr] = useState("");
 
-      {positions.length === 0 ? (
-        <div style={{ opacity: 0.7 }}>No positions yet.</div>
+  const rows = useMemo(() => Array.isArray(positions) ? positions : [], [positions]);
+
+  async function adjust(p, sign) {
+    setErr("");
+    const key = `${p.event_slug}:${p.market_slug}:${p.outcome_index}`;
+    const amtRaw = amountByKey[key];
+    const amt = Number(amtRaw ?? 10);
+    if (!(amt > 0)) {
+      setErr("Adjustment amount must be > 0.");
+      return;
+    }
+
+    setBusyKey(`${key}:${sign}`);
+    try {
+      await adjustPositionShares({
+        event_slug: p.event_slug,
+        market_slug: p.market_slug,
+        outcome_index: Number(p.outcome_index),
+        delta_shares: sign * amt,
+      });
+
+      // Re-fetch via parent (App) by forcing a reload.
+      // Simpler MVP approach: hard reload the embedded dashboard.
+      window.location.reload();
+    } catch (e) {
+      setErr(String(e?.message || e));
+    } finally {
+      setBusyKey(null);
+    }
+  }
+
+  return (
+    <div>
+      {rows.length === 0 ? (
+        <div className="subtle">No positions yet.</div>
       ) : (
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="table">
           <thead>
             <tr style={{ textAlign: "left" }}>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>Market</th>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>Outcome</th>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>Shares</th>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>Implied prob</th>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>E[payout]</th>
-              <th style={{ borderBottom: "1px solid #eee", padding: 8 }}>Var(payout)</th>
+              <th>Market</th>
+              <th>Outcome</th>
+              <th>Shares</th>
+              <th>Adjust</th>
+              <th>Implied prob</th>
+              <th>E[payout]</th>
+              <th>Var(payout)</th>
             </tr>
           </thead>
 
           <tbody>
-            {positions.map((p, idx) => {
+            {rows.map((p, idx) => {
               const ev = positionEV(p);
               const vr = positionVar(p);
+              const key = `${p.event_slug}:${p.market_slug}:${p.outcome_index}`;
+              const step = Number(amountByKey[key] ?? 10);
+              const minusBusy = busyKey === `${key}:-1`;
+              const plusBusy = busyKey === `${key}:1`;
 
               return (
                 <tr key={idx}>
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>
+                  <td>
                     {p.market_title}
-                    <div style={{ fontSize: 12, opacity: 0.65 }}>
-                      <code>{p.market_slug}</code>
+                    <div className="code">{p.market_slug}</div>
+                  </td>
+
+                  <td>{p.outcome_label}</td>
+
+                  <td>{p.shares}</td>
+
+                  <td>
+                    <div className="row" style={{ gap: 8 }}>
+                      <button
+                        className="button buttonMinus"
+                        disabled={minusBusy || plusBusy}
+                        onClick={() => adjust(p, -1)}
+                        style={{ padding: "8px 10px" }}
+                        title="Subtract shares"
+                      >
+                        −
+                      </button>
+
+                      <input
+                        className="input"
+                        type="number"
+                        min={0}
+                        step="any"
+                        value={Number.isFinite(step) ? step : 10}
+                        onChange={(e) => {
+                          const v = Number(e.target.value);
+                          setAmountByKey((prev) => ({
+                            ...prev,
+                            [key]: Number.isFinite(v) ? v : 0,
+                          }));
+                        }}
+                        style={{ width: 110, padding: "8px 10px" }}
+                        aria-label="Adjust shares amount"
+                      />
+
+                      <button
+                        className="button buttonPlus"
+                        disabled={minusBusy || plusBusy}
+                        onClick={() => adjust(p, 1)}
+                        style={{ padding: "8px 10px" }}
+                        title="Add shares"
+                      >
+                        +
+                      </button>
                     </div>
                   </td>
 
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>{p.outcome_label}</td>
+                  <td>{prettyProb(p.implied_probability)}</td>
 
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>{p.shares}</td>
+                  <td>{ev === null ? "—" : `$${ev.toFixed(2)}`}</td>
 
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>
-                    {prettyProb(p.implied_probability)}
-                  </td>
-
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>
-                    {ev === null ? "—" : `$${ev.toFixed(2)}`}
-                  </td>
-
-                  <td style={{ borderBottom: "1px solid #f3f3f3", padding: 8 }}>
-                    {vr === null ? "—" : vr.toFixed(2)}
-                  </td>
+                  <td>{vr === null ? "—" : vr.toFixed(2)}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      )}
+
+      {err && (
+        <pre style={{ color: "rgba(244,63,94,0.95)", whiteSpace: "pre-wrap", marginTop: 10 }}>
+{err}
+        </pre>
       )}
     </div>
   );

@@ -1,6 +1,11 @@
 from __future__ import annotations
 
 import re
+import os
+import subprocess
+import threading
+import time
+import uuid
 from typing import Any, Dict, List, Optional
 import requests
 from fastapi import FastAPI, HTTPException
@@ -15,7 +20,12 @@ app = FastAPI(title="Polymarket Portfolio Builder API")
 # Allow local dev frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,6 +33,114 @@ app.add_middleware(
 
 # --- In-memory portfolio store (MVP). Swap with DB later. ---
 PORTFOLIO: List[Dict[str, Any]] = []
+
+
+# --- Long-running anomaly job runner (pollable) ---
+ANOMALY_MODEL_CMD = None
+ANOMALY_EXPECTED_SECONDS = 7200
+
+try:
+    ANOMALY_MODEL_CMD = (os.getenv("ANOMALY_MODEL_CMD") or "").strip()  # type: ignore[name-defined]
+except Exception:
+    ANOMALY_MODEL_CMD = ""
+
+try:
+    ANOMALY_EXPECTED_SECONDS = int((os.getenv("ANOMALY_MODEL_EXPECTED_SECONDS") or "7200").strip())  # type: ignore[name-defined]
+except Exception:
+    ANOMALY_EXPECTED_SECONDS = 7200
+
+ANOMALY_JOBS: Dict[str, Dict[str, Any]] = {}
+ANOMALY_LOCK = threading.Lock()
+
+
+def _run_anomaly_job(job_id: str) -> None:
+    started = time.time()
+    with ANOMALY_LOCK:
+        job = ANOMALY_JOBS.get(job_id)
+        if not job:
+            return
+        job["status"] = "running"
+        job["started_at"] = started
+
+    try:
+        cmd = (os.getenv("ANOMALY_MODEL_CMD") or "").strip()  # type: ignore[name-defined]
+        if not cmd:
+            raise RuntimeError(
+                "ANOMALY_MODEL_CMD is not set. Configure the backend command that runs your ML model."
+            )
+
+        # Run the command in a shell so users can provide full pipelines.
+        # This is intended for local/dev usage.
+        subprocess.run(cmd, shell=True, check=True)
+
+        finished = time.time()
+        with ANOMALY_LOCK:
+            job = ANOMALY_JOBS.get(job_id)
+            if job:
+                job["status"] = "completed"
+                job["finished_at"] = finished
+                job["message"] = "Completed"
+    except Exception as e:
+        finished = time.time()
+        with ANOMALY_LOCK:
+            job = ANOMALY_JOBS.get(job_id)
+            if job:
+                job["status"] = "failed"
+                job["finished_at"] = finished
+                job["message"] = str(e)
+
+
+@app.post("/anomaly/start")
+def anomaly_start():
+    job_id = uuid.uuid4().hex
+    now = time.time()
+    with ANOMALY_LOCK:
+        ANOMALY_JOBS[job_id] = {
+            "job_id": job_id,
+            "status": "queued",
+            "progress": 0.0,
+            "created_at": now,
+            "expected_seconds": ANOMALY_EXPECTED_SECONDS,
+            "message": "Queued",
+        }
+
+    t = threading.Thread(target=_run_anomaly_job, args=(job_id,), daemon=True)
+    t.start()
+
+    return {"job_id": job_id, "expected_seconds": ANOMALY_EXPECTED_SECONDS}
+
+
+@app.get("/anomaly/status/{job_id}")
+def anomaly_status(job_id: str):
+    with ANOMALY_LOCK:
+        job = ANOMALY_JOBS.get(job_id)
+        if not job:
+            raise HTTPException(status_code=404, detail="job_id not found")
+
+        status = job.get("status")
+        expected = float(job.get("expected_seconds") or ANOMALY_EXPECTED_SECONDS)
+        started_at = job.get("started_at")
+        finished_at = job.get("finished_at")
+        message = job.get("message")
+
+    progress = 0.0
+    if status in ("running", "queued") and started_at:
+        elapsed = max(0.0, time.time() - float(started_at))
+        if expected > 0:
+            progress = min(0.99, elapsed / expected)
+    if status == "completed":
+        progress = 1.0
+    if status == "failed":
+        progress = min(1.0, progress)
+
+    return {
+        "job_id": job_id,
+        "status": status,
+        "progress": float(progress),
+        "started_at": None if not started_at else time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(float(started_at))),
+        "finished_at": None if not finished_at else time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(float(finished_at))),
+        "message": message,
+    }
 
 
 class ResolveEventRequest(BaseModel):
@@ -50,6 +168,13 @@ class AddPositionRequest(BaseModel):
     shares: float
 
 
+class AdjustSharesRequest(BaseModel):
+    event_slug: str
+    market_slug: str
+    outcome_index: int
+    delta_shares: float
+
+
 class PositionDTO(BaseModel):
     event_slug: str
     market_slug: str
@@ -58,6 +183,35 @@ class PositionDTO(BaseModel):
     outcome_label: str
     shares: float
     implied_probability: float
+
+
+class CorrelationParameter(BaseModel):
+    name: str
+    current_value: float
+    projected_value: float
+    unit: str | None = None
+    asset_type: str | None = None
+    change: float | None = None
+
+
+class PredictRequest(BaseModel):
+    scenario_name: str
+    parameters: list[CorrelationParameter]
+
+
+class PredictOutcome(BaseModel):
+    asset_name: str
+    asset_type: str
+    current_price: float
+    projected_price: float
+    confidence: float
+    correlation_strength: float
+    rationale: str
+
+
+class PredictResponse(BaseModel):
+    overall_confidence: float
+    outcomes: list[PredictOutcome]
 
 
 def extract_event_slug(url_or_slug: str) -> str:
@@ -246,8 +400,51 @@ def add_position(req: AddPositionRequest):
         implied_probability=outcome.price,
     )
 
+    # Merge into existing position instead of creating duplicates.
+    for existing in PORTFOLIO:
+        if (
+            str(existing.get("event_slug")) == req.event_slug
+            and str(existing.get("market_slug")) == req.market_slug
+            and int(existing.get("outcome_index")) == int(req.outcome_index)
+        ):
+            existing_shares = float(existing.get("shares") or 0.0)
+            existing["shares"] = existing_shares + float(req.shares)
+            existing["market_title"] = market_title
+            existing["outcome_label"] = outcome.label
+            existing["implied_probability"] = float(outcome.price)
+            return PositionDTO(**existing)
+
     PORTFOLIO.append(pos.model_dump())
     return pos
+
+
+@app.post("/portfolio/adjust_shares")
+def adjust_shares(req: AdjustSharesRequest):
+    # Find the matching position.
+    idx = None
+    for i, p in enumerate(PORTFOLIO):
+        if (
+            str(p.get("event_slug")) == req.event_slug
+            and str(p.get("market_slug")) == req.market_slug
+            and int(p.get("outcome_index")) == int(req.outcome_index)
+        ):
+            idx = i
+            break
+
+    if idx is None:
+        raise HTTPException(status_code=404, detail="Position not found")
+
+    p = PORTFOLIO[idx]
+    current = float(p.get("shares") or 0.0)
+    next_shares = current + float(req.delta_shares)
+
+    # If shares drop to 0 or below, remove the position.
+    if next_shares <= 0:
+        PORTFOLIO.pop(idx)
+        return {"ok": True, "removed": True}
+
+    p["shares"] = float(next_shares)
+    return {"ok": True, "removed": False, "position": p}
 
 
 @app.get("/portfolio", response_model=List[PositionDTO])
@@ -258,4 +455,44 @@ def get_portfolio():
 @app.delete("/portfolio/clear", response_model=Dict[str, Any])
 def clear_portfolio():
     PORTFOLIO.clear()
+
+    return {"ok": True}
+
+
+@app.post("/api/predict", response_model=PredictResponse)
+def predict(req: PredictRequest):
+    # MVP placeholder predictor.
+    # This exists to satisfy the Next.js Simulation tab's default endpoint
+    # (NEXT_PUBLIC_CORRELATION_API), so the UI doesn't fail with a network error.
+    # Replace with real correlation logic later.
+
+    # Use the first parameter as the scenario driver.
+    p0 = req.parameters[0] if req.parameters else None
+    current = float(p0.current_value) / 100.0 if p0 else 0.5
+    projected = float(p0.projected_value) / 100.0 if p0 else 0.5
+    delta = projected - current
+
+    # Return a small, deterministic set of “correlated” placeholders.
+    outcomes: list[PredictOutcome] = []
+    for name, strength in [
+        ("Macro sentiment", 0.25),
+        ("Risk-on basket", 0.18),
+        ("USD strength", -0.12),
+    ]:
+        cur = 0.5
+        proj = max(0.0, min(1.0, cur + delta * strength))
+        outcomes.append(
+            PredictOutcome(
+                asset_name=name,
+                asset_type="stock",
+                current_price=cur,
+                projected_price=proj,
+                confidence=0.55,
+                correlation_strength=strength,
+                rationale="Placeholder predictor (wire real model/API later).",
+            )
+        )
+
+    overall = 0.55
+    return PredictResponse(overall_confidence=overall, outcomes=outcomes)
     return {"ok": True, "count": 0}

@@ -39,19 +39,13 @@ export function portfolioEVandVarGrouped(positions) {
   let variance = 0;
 
   for (const [, outcomeMap] of markets.entries()) {
-    let sumP = 0;
     let ex = 0;
     let ex2 = 0;
 
     for (const { shares, prob } of outcomeMap.values()) {
-      sumP += prob;
       ex += prob * shares;
       ex2 += prob * (shares * shares);
     }
-
-    // Clamp "other" probability defensively (numerical issues, stale probs, etc.)
-    const pOther = Math.max(0, 1 - sumP);
-    // Other contributes 0 payout, so nothing to add to ex or ex2.
 
     const varM = Math.max(0, ex2 - ex * ex);
 
